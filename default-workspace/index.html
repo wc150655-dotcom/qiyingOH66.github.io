@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e1b19">
+  <title>齐瑛 · 私人岛屿</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="stage">
+    <div class="phone-shell" id="phone">
+      <div class="phone-bezel">
+        <div class="screen" id="screen">
+          <div class="wallpaper" aria-hidden="true"></div>
+          <div class="wallpaper-veil" aria-hidden="true"></div>
+          <div class="grain" aria-hidden="true"></div>
+
+          <header class="statusbar" aria-label="状态栏">
+            <span class="status-time" id="statusClock">21:24</span>
+            <span class="dynamic-island" aria-hidden="true"></span>
+            <div class="status-right">
+              <svg class="status-icon" viewBox="0 0 20 14" aria-hidden="true"><path d="M2 11h2v2H2zm4-3h2v5H6zm4-3h2v8h-2zm4-3h2v11h-2z"/></svg>
+              <svg class="status-icon" viewBox="0 0 20 15" aria-hidden="true"><path d="M10 13.2a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4ZM6.9 9.8a4.4 4.4 0 0 1 6.2 0l1.2-1.3a6.1 6.1 0 0 0-8.6 0l1.2 1.3Zm-2.5-2.6a8 8 0 0 1 11.2 0l1.2-1.3a9.8 9.8 0 0 0-13.6 0l1.2 1.3Z"/></svg>
+              <span class="battery" aria-label="电量 100%"><i></i></span>
+              <button class="admin-key" id="adminKeyBtn" type="button" aria-label="管理员入口" title="管理员入口">
+                <svg viewBox="0 0 18 18" aria-hidden="true"><rect x="3.2" y="7.6" width="11.6" height="8.2" rx="2.3"/><path d="M6.1 7.6V5.8a2.9 2.9 0 0 1 5.8 0v1.8"/><circle cx="9" cy="11.6" r="1"/></svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- ================= HOME ================= -->
+          <section class="home" id="homeScreen" aria-label="主屏幕">
+            <div class="home-scroll">
+              <header class="home-head">
+                <div class="home-heading">
+                  <p class="eyebrow" id="todayLabel">MON · 20 OCT</p>
+                  <h1 class="greeting editable" data-edit="home.greeting" data-edit-label="首页问候语">晚上好，齐瑛</h1>
+                  <p class="greeting-sub editable" data-edit="home.sub" data-edit-label="首页副标题">把今天交给风，也交给自己。</p>
+                </div>
+                <div class="home-avatar" aria-hidden="true"><span>瑛</span></div>
+              </header>
+
+              <article class="music-widget glass" id="musicWidget" aria-label="私人漫游音乐组件">
+                <div class="music-ambient" id="musicAmbient" aria-hidden="true"></div>
+                <div class="music-cover" id="musicCover" role="button" tabindex="0" data-action="open-player" aria-label="打开播放器">
+                  <span class="cover-ring"></span>
+                  <span class="cover-glyph" id="musicCoverGlyph">♪</span>
+                </div>
+                <div class="music-main">
+                  <div class="music-topline">
+                    <span class="music-kicker"><i class="live-dot"></i> 私人漫游</span>
+                    <span class="eq" id="musicEq" aria-hidden="true"><i></i><i></i><i></i></span>
+                  </div>
+                  <h2 class="music-title" id="musicTitle">Tuyo</h2>
+                  <p class="music-artist" id="musicArtist">Rodrigo Amarante</p>
+                  <div class="music-progressline">
+                    <span id="musicCurrent">0:00</span>
+                    <input class="music-seek" id="musicSeek" type="range" min="0" max="1000" value="0" step="1" aria-label="播放进度">
+                    <span id="musicDuration">0:00</span>
+                  </div>
+                </div>
+                <div class="music-controls">
+                  <div class="music-controls-left">
+                    <button class="round-mini" id="musicPrev" type="button" aria-label="上一首">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14M19 6.8v10.4L9.5 12 19 6.8Z"/></svg>
+                    </button>
+                    <button class="music-play" id="musicPlay" type="button" aria-label="播放" data-playing="false">
+                      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.4 5.7 18 12l-9.6 6.3V5.7Z"/></svg>
+                      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5h3v13H8zM13 5.5h3v13h-3z"/></svg>
+                    </button>
+                    <button class="round-mini" id="musicNext" type="button" aria-label="下一首">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5v14M5 6.8v10.4L14.5 12 5 6.8Z"/></svg>
+                    </button>
+                  </div>
+                  <button class="queue-btn" id="musicQueue" type="button" data-action="open-player" aria-label="打开播放列表">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11M4 12h11M4 17h7M19 7v9.3a2.2 2.2 0 1 1-1.4-2.1V5h3.2"/></svg>
+                    <span id="musicQueueCount">5</span>
+                  </button>
+                </div>
+              </article>
+
+              <div class="home-section-line">
+                <span>MY ISLAND</span>
+                <i></i>
+                <span>轻触进入</span>
+              </div>
+
+              <section class="app-grid" aria-label="应用程序">
+                <button class="app" type="button" data-open-app="search">
+                  <span class="app-icon icon-search">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="21" cy="21" r="10.5"/><path d="m29 29 9 9"/></svg>
+                  </span>
+                  <span class="app-name">搜索</span>
+                </button>
+                <button class="app" type="button" data-open-app="intro">
+                  <span class="app-icon icon-about"><span class="monogram">瑛</span><i class="about-orbit"></i></span>
+                  <span class="app-name">关于我</span>
+                </button>
+                <button class="app" type="button" data-open-app="mail">
+                  <span class="app-icon icon-mail">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="14" width="28" height="21" rx="5"/><path d="m12 17 12 9 12-9"/></svg>
+                  </span>
+                  <span class="app-name">信箱</span>
+                  <span class="app-badge" id="mailBadge" hidden></span>
+                </button>
+                <button class="app" type="button" data-soon="相册">
+                  <span class="app-icon icon-photos">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="18" r="3.2"/><path d="m12 34 8.5-9 5.2 5.4 4.4-4.8L36 34"/><rect x="9" y="10" width="30" height="28" rx="7"/></svg>
+                  </span>
+                  <span class="app-name">相册</span>
+                </button>
+                <button class="app" type="button" data-soon="天气">
+                  <span class="app-icon icon-weather">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="18" r="6"/><path d="M18 7v3M7 18h3M12.5 12.5 10 10M23.5 12.5 26 10M10 27h17.5a6 6 0 1 0-1.7-11.7A8 8 0 0 0 10 27Z"/></svg>
+                  </span>
+                  <span class="app-name">天气</span>
+                </button>
+                <button class="app" type="button" data-soon="日历">
+                  <span class="app-icon icon-calendar"><span>20</span><small>OCT</small></span>
+                  <span class="app-name">日历</span>
+                </button>
+                <button class="app" type="button" data-soon="备忘录">
+                  <span class="app-icon icon-notes">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 10h20a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4Z"/><path d="M17 19h14M17 24h14M17 29h9"/></svg>
+                  </span>
+                  <span class="app-name">备忘录</span>
+                </button>
+                <button class="app" type="button" data-admin-entry>
+                  <span class="app-icon icon-settings">
+                    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 16h26M11 24h26M11 32h26"/><circle cx="18" cy="16" r="3.2"/><circle cx="30" cy="24" r="3.2"/><circle cx="21" cy="32" r="3.2"/></svg>
+                  </span>
+                  <span class="app-name">设置</span>
+                </button>
+              </section>
+
+              <button class="daily-card glass" type="button" data-open-app="intro" aria-label="翻开序章">
+                <span class="daily-top">
+                  <span class="micro-label">NOTE TO SELF</span>
+                  <span class="daily-date" id="dailyDate">20 OCT</span>
+                </span>
+                <span class="daily-quote">如果不懂得狂热，<br>又怎能理解清醒的理智？</span>
+                <span class="daily-foot"><span>翻开序章</span><span>↗</span></span>
+              </button>
+
+              <p class="home-footnote editable" data-edit="home.footnote" data-edit-label="首页页脚小字">只留下三扇门：搜索、我、信箱。</p>
+            </div>
+
+            <nav class="dock glass" aria-label="程序坞">
+              <button class="dock-app" type="button" data-soon="电话" aria-label="电话">
+                <span class="dock-icon dock-phone"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11.4 6.6 14 11l-2.4 2.2c1.4 3.2 3.9 5.7 7.1 7.1l2.2-2.4 4.4 2.6-.8 5.2c-.2 1.1-1.2 1.8-2.3 1.6C13.6 25.5 6.5 18.4 4.7 9.8c-.2-1.1.6-2.1 1.7-2.3l5-.9Z"/></svg></span>
+              </button>
+              <button class="dock-app" type="button" data-soon="信息" aria-label="信息">
+                <span class="dock-icon dock-message"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 8h20a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H15l-6.5 4v-4H6a3 3 0 0 1-3-3V11a3 3 0 0 1 3-3Z"/></svg></span>
+              </button>
+              <button class="dock-app" type="button" data-soon="相机" aria-label="相机">
+                <span class="dock-icon dock-camera"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="9" width="24" height="17" rx="5"/><circle cx="16" cy="17.5" r="5.2"/><path d="M11 9l2-3h6l2 3"/></svg></span>
+              </button>
+              <button class="dock-app" type="button" data-soon="音乐" aria-label="音乐">
+                <span class="dock-icon dock-music"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M11 8v15.2a4 4 0 1 1-2-3.5V6l14-2v14.2a4 4 0 1 1-2-3.5V7.6L11 9.2"/></svg></span>
+              </button>
+            </nav>
+            <div class="home-dots" aria-hidden="true"><i class="active"></i><i></i></div>
+          </section>
+
+          <!-- ================= SEARCH ================= -->
+          <section class="app-view" id="app-search" aria-label="搜索" aria-hidden="true">
+            <header class="app-topbar">
+              <button class="round-btn" type="button" data-close-app aria-label="回到主屏幕">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+              </button>
+              <div class="topbar-title">
+                <p class="app-kicker">FIND A LITTLE WORLD</p>
+                <h2 class="editable" data-edit="search.title" data-edit-label="搜索页标题">搜索</h2>
+              </div>
+              <button class="round-btn" type="button" id="searchClear" aria-label="清空搜索">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+              </button>
+            </header>
+            <div class="app-scroll search-scroll">
+              <div class="search-lead">
+                <p class="serif editable" data-edit="search.lead" data-edit-label="搜索页引导语">这里没有无穷的答案，只有七个被认真收藏的入口。</p>
+                <span class="micro-label">SEVEN FIXED ENTRIES · 只收录固定词条</span>
+              </div>
+              <form class="search-bar" id="searchForm" role="search">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2"/><path d="m15.2 15.2 4.6 4.6"/></svg>
+                <input id="searchInput" type="search" placeholder="问：今日塔罗牌运势" autocomplete="off" aria-label="搜索固定词条">
+                <button type="submit" aria-label="开始搜索">Search</button>
+              </form>
+              <div class="search-chips" id="searchChips" aria-label="固定词条">
+                <button type="button" data-query="今日塔罗牌运势">今日塔罗牌运势</button>
+                <button type="button" data-query="我想玩俄罗斯方块">俄罗斯方块</button>
+                <button type="button" data-query="我想玩推箱子">推箱子</button>
+                <button type="button" data-query="我想抽抽今日植物">今日植物</button>
+                <button type="button" data-query="我要喂小猫">喂小猫</button>
+                <button type="button" data-query="钓鱼">钓鱼</button>
+                <button type="button" data-query="我想你">我想你</button>
+              </div>
+              <div class="search-result" id="searchResult" aria-live="polite">
+                <div class="search-empty">
+                  <span class="empty-orbit" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <p>输入一个词条，或者从上面挑选。</p>
+                  <small>搜索只认识这七句话。</small>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= INTRO ================= -->
+          <section class="app-view intro-app" id="app-intro" aria-label="自我介绍" aria-hidden="true">
+            <header class="app-topbar">
+              <button class="round-btn" type="button" data-close-app aria-label="回到主屏幕">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+              </button>
+              <div class="topbar-title">
+                <p class="app-kicker">A SMALL ARCHIVE OF ME</p>
+                <h2>齐瑛</h2>
+              </div>
+              <button class="round-btn" type="button" id="introIndexBtn" aria-label="显示页面目录">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h9"/></svg>
+              </button>
+            </header>
+            <nav class="intro-nav" id="introNav" aria-label="自我介绍目录">
+              <button type="button" data-intro-page="0" class="active">序</button>
+              <button type="button" data-intro-page="1">关于我</button>
+              <button type="button" data-intro-page="2">占卜</button>
+              <button type="button" data-intro-page="3">交易须知</button>
+              <button type="button" data-intro-page="4">价目表</button>
+              <button type="button" data-intro-page="5">树洞</button>
+              <button type="button" data-intro-page="6">信箱</button>
+            </nav>
+            <div class="intro-deck">
+              <div class="intro-progress"><span id="introProgressBar"></span></div>
+              <div class="intro-pages" id="introPages">
+                <article class="intro-page active" data-page="0">
+                  <div class="page-pad">
+                    <p class="micro-label">PROLOGUE · 序</p>
+                    <h3 class="intro-display editable" data-edit="intro.prologue.line1" data-edit-label="序 · 开篇">每一种生命的绚烂绽放<br>都必须经历分裂与矛盾</h3>
+                    <div class="poem">
+                      <p class="editable" data-edit="intro.prologue.p1" data-edit-label="序 · 第一句">如果不懂得狂热，又怎能理解清醒的理智？</p>
+                      <p class="editable" data-edit="intro.prologue.p2" data-edit-label="序 · 第二句">如果没有站在情欲背后的死亡，情欲又从何谈起？</p>
+                      <p class="editable" data-edit="intro.prologue.p3" data-edit-label="序 · 第三句">如果没有两性间永恒的致命对立，爱情又意味着什么？</p>
+                    </div>
+                    <div class="page-signature"><span></span><em>齐瑛 · 2026</em></div>
+                    <button class="quiet-link" type="button" data-intro-next>继续阅读 <span>→</span></button>
+                  </div>
+                </article>
+
+                <article class="intro-page" data-page="1">
+                  <div class="page-pad">
+                    <p class="micro-label">01 · ABOUT ME</p>
+                    <figure class="intro-photo">
+                      <img src="https://img2.tofaka.com/autoupload/f/xp4l4/20261020/UnxZ/1440X848/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261020195251_20_477.jpg" alt="齐瑛的照片" loading="lazy" referrerpolicy="no-referrer">
+                      <figcaption>a passing moment</figcaption>
+                    </figure>
+                    <h3 class="intro-name editable" data-edit="intro.about.name" data-edit-label="关于我 · 名字">齐瑛</h3>
+                    <div class="fact-row">
+                      <span class="editable" data-edit="intro.about.fact1" data-edit-label="关于我 · 基本信息">22 / H / 天蝎</span>
+                      <span class="editable" data-edit="intro.about.fact2" data-edit-label="关于我 · 标签">八无 · INTJ</span>
+                      <span class="editable" data-edit="intro.about.fact3" data-edit-label="关于我 · 状态">水母 · 行程不定 · 旅居者</span>
+                    </div>
+                    <div class="quote-card">
+                      <span class="quote-mark">“</span>
+                      <p class="editable" data-edit="intro.about.quote1" data-edit-label="关于我 · 西语引文一">Soy el fuego que arde tu piel,</p>
+                      <p class="editable" data-edit="intro.about.quote2" data-edit-label="关于我 · 西语引文二">Soy el agua que mata tu sed,</p>
+                    </div>
+                    <div class="jump-grid">
+                      <button class="jump-card" type="button" data-jump-page="2">
+                        <span class="jump-index">01</span>
+                        <span><b>占卜</b><small>塔罗 / 占星骰子 / 雷诺曼</small></span>
+                        <i>↗</i>
+                      </button>
+                      <button class="jump-card" type="button" data-jump-page="5">
+                        <span class="jump-index">02</span>
+                        <span><b>树洞</b><small>35% 安慰 · 65% 分析</small></span>
+                        <i>↗</i>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="intro-page" data-page="2">
+                  <div class="page-pad">
+                    <p class="micro-label">02 · DIVINATION</p>
+                    <h3 class="intro-display small editable" data-edit="intro.divination.title" data-edit-label="占卜 · 标题">在混沌里，找到一点可以握住的光。</h3>
+                    <div class="info-block">
+                      <span class="info-label">占卜体系</span>
+                      <p class="editable" data-edit="intro.divination.systems" data-edit-label="占卜 · 体系">塔罗 / 占星骰子 / 雷诺曼</p>
+                    </div>
+                    <div class="info-block">
+                      <span class="info-label">仪式体系</span>
+                      <p class="editable" data-edit="intro.divination.ritual" data-edit-label="占卜 · 仪式体系">墨西哥 Santa Muerte</p>
+                    </div>
+                    <p class="intro-body editable" data-edit="intro.divination.body" data-edit-label="占卜 · 正文">我不替你决定人生，只把牌面与象征交还给你。占卜是一面镜子，也是一个暂停键。你可以带着问题来，也请带着自己的判断离开。</p>
+                    <button class="wide-link" type="button" data-jump-page="3">
+                      <span><small>READ FIRST</small>交易须知</span><i>→</i>
+                    </button>
+                    <button class="wide-link soft" type="button" data-jump-page="4">
+                      <span><small>PRICE LIST</small>价目表</span><i>→</i>
+                    </button>
+                    <button class="quiet-link" type="button" data-jump-page="5">也想去树洞坐坐 <span>→</span></button>
+                  </div>
+                </article>
+
+                <article class="intro-page" data-page="3">
+                  <div class="page-pad">
+                    <p class="micro-label">03 · BEFORE WE START</p>
+                    <h3 class="intro-display small editable" data-edit="intro.notice.title" data-edit-label="交易须知 · 标题">交易须知</h3>
+                    <p class="intro-body editable" data-edit="intro.notice.hello1" data-edit-label="交易须知 · 开场一">你好，我是齐瑛。</p>
+                    <p class="intro-body editable" data-edit="intro.notice.hello2" data-edit-label="交易须知 · 开场二">很高兴你也能选择我。我也会尽我力所能及的去帮助你解决你的困惑，但在此之前，我也希望你能够看完以下的文字，以做好对我们彼此之间的负责。</p>
+                    <figure class="intro-photo notice-photo">
+                      <img src="https://img2.tofaka.com/autoupload/f/xp4l4/20261020/4ipO/1011X610/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261020195250_18_477.jpg" alt="占卜与仪式说明配图" loading="lazy" referrerpolicy="no-referrer">
+                    </figure>
+                    <div class="section-heading"><span>01</span><h4>—— 占卜 ——</h4></div>
+                    <p class="intro-body editable" data-edit="intro.notice.div.method" data-edit-label="占卜 · 方式">占卜方式：通常为 yyt</p>
+                    <ol class="rule-list">
+                      <li>
+                        <span class="rule-num">1</span>
+                        <div>
+                          <b class="editable" data-edit="intro.notice.div.r1.title" data-edit-label="占卜规则一 · 标题">不占卜生死和重大疾病</b>
+                          <p class="editable" data-edit="intro.notice.div.r1.body" data-edit-label="占卜规则一 · 内容">无论给多少钱，都不会进行占卜的内容。当出现了这方面的疾病，以及担忧希望你优先去寻求医院和医疗体系的帮助。</p>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="rule-num">2</span>
+                        <div>
+                          <b class="editable" data-edit="intro.notice.div.r2.title" data-edit-label="占卜规则二 · 标题">不接受任何的怀疑论者以及所谓的对赌</b>
+                          <p class="editable" data-edit="intro.notice.div.r2.body" data-edit-label="占卜规则二 · 内容">希望你是真的有需求，所以来选择我，而我会帮助你，而不是秉持着怀疑的态度去进行交流。</p>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="rule-num">3</span>
+                        <div>
+                          <b class="editable" data-edit="intro.notice.div.r3.title" data-edit-label="占卜规则三 · 标题">占卜不是读心术</b>
+                          <p class="editable" data-edit="intro.notice.div.r3.body" data-edit-label="占卜规则三 · 内容">所以我无法知道占卜的对象每分每秒在想什么。</p>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="rule-num">4</span>
+                        <div>
+                          <b class="editable" data-edit="intro.notice.div.r4.title" data-edit-label="占卜规则四 · 标题">当你认为我占卜的内容并不准确时</b>
+                          <p class="editable" data-edit="intro.notice.div.r4.body" data-edit-label="占卜规则四 · 内容">可以联系我进行退费 80%。</p>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="rule-num">5</span>
+                        <div>
+                          <b class="editable" data-edit="intro.notice.div.r5.title" data-edit-label="占卜规则五 · 标题">当你认为我所做的仪式并不有效时</b>
+                          <p class="editable" data-edit="intro.notice.div.r5.body" data-edit-label="占卜规则五 · 内容">可以联系我进行退费 50%。</p>
+                        </div>
+                      </li>
+                    </ol>
+                    <div class="section-heading"><span>02</span><h4>—— 仪式 ——</h4></div>
+                    <p class="intro-body editable" data-edit="intro.notice.ritual.body1" data-edit-label="仪式 · 正文一">我所使用的为墨西哥守护神 Santa Muerte 为主体、圣塞浦路斯和圣米迦勒为辅助的仪式。</p>
+                    <p class="intro-body editable" data-edit="intro.notice.ritual.body2" data-edit-label="仪式 · 正文二">仪式之前的准备：我需要仪式对象的真实名字 / 出生年月日时（越精确越好）/ 大致方位 / 照片。以上四者必须有两个以上。</p>
+                    <p class="intro-body editable" data-edit="intro.notice.ritual.body3" data-edit-label="仪式 · 正文三">仪式后通常为一周开始生效。仪式费用根据不同的项目有所浮动，详情请看价目表。</p>
+                    <button class="wide-link" type="button" data-jump-page="4">
+                      <span><small>PRICE LIST</small>价目表（点击后跳转）</span><i>→</i>
+                    </button>
+                    <button class="quiet-link" type="button" data-jump-page="5">树洞（点击跳转） <span>→</span></button>
+                  </div>
+                </article>
+
+                <article class="intro-page" data-page="4">
+                  <div class="page-pad">
+                    <p class="micro-label">04 · PRICE LIST</p>
+                    <h3 class="intro-display small editable" data-edit="intro.price.title" data-edit-label="价目表 · 标题">价目表</h3>
+                    <div class="price-group editable" data-edit="intro.price.divination" data-edit-label="价目表 · 占卜项目">
+                      <div class="price-group-head"><span>占卜</span><small>DIVINATION</small></div>
+                      <div class="price-row"><span>占星骰子</span><em>28 RMB</em><small>1 问</small></div>
+                      <div class="price-row"><span>雷诺曼</span><em>45 RMB</em><small>1 问</small></div>
+                      <div class="price-row"><span>三张无牌阵</span><em>45 RMB</em><small>三张</small></div>
+                      <div class="price-row"><span>四季牌阵</span><em>68 RMB</em><small>四季</small></div>
+                      <div class="price-row"><span>加一张牌</span><em>8 RMB</em><small>单张</small></div>
+                      <div class="price-note editable" data-edit="intro.price.note1" data-edit-label="价目表 · 自带牌阵说明">可自带牌阵：牌阵为一张牌 12 RMB；八张牌以上为一张牌 10 RMB。</div>
+                      <div class="price-note editable" data-edit="intro.price.exclude" data-edit-label="价目表 · 不接牌阵">不接：凯尔特十字 / 十二星座 / 生命之树 / 维纳斯之爱 / 大祭司 9 秘 / 七行星 9 宫</div>
+                    </div>
+                    <div class="price-group editable" data-edit="intro.price.ritual" data-edit-label="价目表 · 仪式项目">
+                      <div class="price-group-head"><span>仪式</span><small>RITUAL</small></div>
+                      <div class="price-row"><span>财富圣死亡</span><em>228 RMB</em><small>财富</small></div>
+                      <div class="price-row"><span>驱逐敌人</span><em>216 RMB</em><small>驱逐</small></div>
+                      <div class="price-row"><span>逆转你身上的诅咒</span><em>470 RMB</em><small>逆转</small></div>
+                      <div class="price-row"><span>遏制你身上的诅咒</span><em>210 RMB</em><small>遏制</small></div>
+                      <div class="price-row"><span>请求圣死亡的庇护</span><em>168 RMB</em><small>庇护</small></div>
+                      <div class="price-row"><span>阻止身上反复的问题</span><em>188 RMB</em><small>阻断</small></div>
+                      <div class="price-row"><span>请求圣塞浦路斯的解惑</span><em>128 RMB</em><small>解惑</small></div>
+                    </div>
+                    <button class="wide-link soft" type="button" data-jump-page="5">
+                      <span><small>TREE HOLLOW</small>树洞在这边</span><i>→</i>
+                    </button>
+                  </div>
+                </article>
+
+                <article class="intro-page" data-page="5">
+                  <div class="page-pad">
+                    <p class="micro-label">05 · TREE HOLLOW</p>
+                    <figure class="intro-photo tree-photo">
+                      <img src="https://img2.tofaka.com/autoupload/f/xp4l4/20261020/h1Sx/1280X2129/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261020195250_19_477.jpg" alt="树洞配图" loading="lazy" referrerpolicy="no-referrer">
+                    </figure>
+                    <h3 class="intro-name editable" data-edit="intro.tree.title" data-edit-label="树洞 · 标题">树洞</h3>
+                    <p class="tree-keywords editable" data-edit="intro.tree.keywords" data-edit-label="树洞 · 关键词">直白 · 明确 · 解决问题 · 寻找症结</p>
+                    <div class="fact-row wrap">
+                      <span class="editable" data-edit="intro.tree.fact1" data-edit-label="树洞 · 学科背景">教育学 / 发展心理学 / 应用心理学</span>
+                      <span class="editable" data-edit="intro.tree.fact2" data-edit-label="树洞 · 比例">35% 安慰 · 65% 分析</span>
+                    </div>
+                    <p class="intro-body editable" data-edit="intro.tree.body1" data-edit-label="树洞 · 正文一">请在开始前告诉我你的雷点，若未提前告知，事后客诉不予接受。</p>
+                    <p class="intro-body editable" data-edit="intro.tree.body2" data-edit-label="树洞 · 正文二">虽然是树洞，但我希望我们的对话更偏向于分析，探索、剖析和稳定情绪。我不会一直顺着你的情绪接话，这是避免你在痛苦时情绪走向滑坡。在必要时刻，我会引导你去进行一些行动，通过外物刺激，保持适当的冷静和让你的情绪降温。</p>
+                    <p class="intro-body editable" data-edit="intro.tree.body3" data-edit-label="树洞 · 正文三">让客人沉溺于无谓的情绪和牛角尖的状态并不是我的目的，我更希望这场对话能让你恢复明晰的状态，勇敢去解决你人生的每一个问题。</p>
+                    <div class="privacy-stamp"><span>CONFIDENTIAL</span><p class="editable" data-edit="intro.tree.privacy" data-edit-label="树洞 · 保密说明">我们的对话我会严格保密。</p></div>
+                    <button class="wide-link" type="button" data-open-app="mail">
+                      <span><small>WRITE TO ME</small>去信箱坐坐</span><i>→</i>
+                    </button>
+                  </div>
+                </article>
+
+                <article class="intro-page" data-page="6">
+                  <div class="page-pad">
+                    <p class="micro-label">06 · MAILBOX</p>
+                    <figure class="intro-photo mailbox-photo">
+                      <img src="https://img2.tofaka.com/autoupload/f/xp4l4/20261020/oycb/1279X696/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261020195249_17_477.jpg" alt="信箱配图" loading="lazy" referrerpolicy="no-referrer">
+                    </figure>
+                    <h3 class="intro-display small editable" data-edit="intro.mail.title" data-edit-label="信箱介绍 · 标题">你想告诉我什么呢？</h3>
+                    <p class="intro-body editable" data-edit="intro.mail.body" data-edit-label="信箱介绍 · 正文">信箱可以匿名留言。我会在后台读到你的话，并选择是否把回信留在岛上。若你只是想说一句没有人听的话，也可以把它放在这里。</p>
+                    <button class="wide-link" type="button" data-open-app="mail">
+                      <span><small>OPEN THE MAILBOX</small>写一封信</span><i>→</i>
+                    </button>
+                    <p class="mail-privacy">你的署名可以留空。匿名，是一种被允许的靠近。</p>
+                  </div>
+                </article>
+              </div>
+              <footer class="intro-footer">
+                <button type="button" id="introPrev" aria-label="上一页"><span>←</span> Prev</button>
+                <span class="intro-counter" id="introCounter">01 / 07</span>
+                <button type="button" id="introNext" aria-label="下一页">Next <span>→</span></button>
+              </footer>
+            </div>
+          </section>
+
+          <!-- ================= MAILBOX ================= -->
+          <section class="app-view mail-app" id="app-mail" aria-label="信箱" aria-hidden="true">
+            <header class="app-topbar">
+              <button class="round-btn" type="button" data-close-app aria-label="回到主屏幕">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+              </button>
+              <div class="topbar-title">
+                <p class="app-kicker">ANONYMOUS LETTERS</p>
+                <h2 class="editable" data-edit="mail.title" data-edit-label="信箱页标题">信箱</h2>
+              </div>
+              <button class="round-btn" type="button" id="mailComposeShortcut" aria-label="写信">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </header>
+            <div class="app-scroll">
+              <div class="mail-hero">
+                <div class="mail-hero-image">
+                  <img src="https://img2.tofaka.com/autoupload/f/xp4l4/20261020/oycb/1279X696/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20261020195249_17_477.jpg" alt="信箱配图" loading="lazy" referrerpolicy="no-referrer">
+                </div>
+                <p class="micro-label">LEAVE A NOTE · 无需署名</p>
+                <h3 class="serif editable" data-edit="mail.prompt" data-edit-label="信箱留言提示">你想告诉我什么呢？</h3>
+                <p class="editable" data-edit="mail.lead" data-edit-label="信箱引导语">有些话不必有回音，但如果你愿意，我会认真读。</p>
+              </div>
+
+              <form class="letter-form glass" id="mailForm">
+                <label for="mailName">署名 <span>可选 · 留空即匿名</span></label>
+                <input id="mailName" name="name" type="text" maxlength="24" placeholder="一个你喜欢的名字">
+                <label for="mailContent">写点什么</label>
+                <textarea id="mailContent" name="content" rows="5" maxlength="1200" placeholder="在这里放下你想说的话……" required></textarea>
+                <div class="form-foot">
+                  <span id="mailCount">0 / 1200</span>
+                  <button class="primary-btn" type="submit">投进信箱 <i>↗</i></button>
+                </div>
+              </form>
+
+              <div class="section-title-row">
+                <div>
+                  <p class="micro-label">LETTERS FROM THE SEA</p>
+                  <h3 class="editable" data-edit="mail.publicTitle" data-edit-label="信箱 · 回音区标题">被留下的回音</h3>
+                </div>
+                <span class="count-pill" id="publicMailCount">0</span>
+              </div>
+              <div class="public-letters" id="publicLetters"></div>
+            </div>
+          </section>
+
+          <!-- ================= ADMIN ================= -->
+          <section class="app-view admin-app" id="app-admin" aria-label="网站后台" aria-hidden="true">
+            <header class="app-topbar admin-topbar">
+              <button class="round-btn" type="button" id="adminBackHome" aria-label="回到主屏幕">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg>
+              </button>
+              <div class="topbar-title">
+                <p class="app-kicker">SITE ADMINISTRATOR</p>
+                <h2>网站管理员</h2>
+              </div>
+              <button class="logout-btn" type="button" id="adminLogout">退出</button>
+            </header>
+            <nav class="admin-tabs" aria-label="后台栏目">
+              <button type="button" class="active" data-admin-tab="content">内容管理</button>
+              <button type="button" data-admin-tab="mail">信箱 <span class="tab-badge" id="adminMailCount">0</span></button>
+              <button type="button" data-admin-tab="site">站点设置</button>
+            </nav>
+            <div class="admin-scroll">
+              <section class="admin-pane active" data-admin-pane="content">
+                <div class="admin-card">
+                  <p class="micro-label">LIVE EDIT</p>
+                  <h3>页面文字编辑</h3>
+                  <p class="admin-muted">开启后，回到前台点击任意带虚线框的文字即可修改。修改会自动保存在这台设备的浏览器里。</p>
+                  <button class="primary-btn wide" type="button" id="inlineEditBtn">开启页面编辑</button>
+                  <p class="admin-status" id="inlineEditStatus">当前：只读</p>
+                </div>
+                <div class="admin-card">
+                  <p class="micro-label">QUICK COPY</p>
+                  <h3>快速修改</h3>
+                  <div id="quickCopyFields" class="quick-fields"></div>
+                  <button class="primary-btn wide" type="button" id="saveQuickCopy">保存文字</button>
+                </div>
+                <div class="admin-card subtle-card">
+                  <h3>数据说明</h3>
+                  <p class="admin-muted">文本、信箱与回复保存在浏览器 localStorage 中。清理浏览器数据会一并清除。可在「站点设置」导出备份。</p>
+                </div>
+              </section>
+
+              <section class="admin-pane" data-admin-pane="mail">
+                <div class="admin-card">
+                  <div class="admin-card-head">
+                    <div>
+                      <p class="micro-label">INBOX</p>
+                      <h3>来信管理</h3>
+                    </div>
+                    <button class="text-btn" type="button" id="refreshMail">刷新</button>
+                  </div>
+                  <p class="admin-muted">回复后可选择「展示」或「隐藏」。隐藏的留言不会出现在前台。</p>
+                </div>
+                <div class="admin-letters" id="adminLetters"></div>
+              </section>
+
+              <section class="admin-pane" data-admin-pane="site">
+                <div class="admin-card">
+                  <p class="micro-label">BACKUP</p>
+                  <h3>站点数据</h3>
+                  <p class="admin-muted">导出包含文字修改、信箱、回复与展示状态的 JSON 文件。</p>
+                  <div class="admin-actions">
+                    <button class="secondary-btn" type="button" id="exportData">导出备份</button>
+                    <label class="secondary-btn file-btn">导入备份<input type="file" id="importData" accept="application/json"></label>
+                  </div>
+                </div>
+                <div class="admin-card">
+                  <p class="micro-label">RESET</p>
+                  <h3>还原站点</h3>
+                  <p class="admin-muted">清除所有本机修改、信件与回复，恢复初始内容。此操作不可撤销。</p>
+                  <button class="danger-btn" type="button" id="resetSite">恢复初始状态</button>
+                </div>
+                <div class="admin-card subtle-card">
+                  <h3>身份</h3>
+                  <p class="admin-muted">当前身份：网站管理员。登录状态只在本次浏览器会话内有效。</p>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <!-- ================= PLAYER SHEET ================= -->
+          <div class="sheet-backdrop" id="playerSheet" aria-hidden="true">
+            <section class="player-sheet" role="dialog" aria-modal="true" aria-label="正在播放">
+              <button class="sheet-handle" type="button" data-close-player aria-label="关闭播放器"><i></i></button>
+              <div class="player-heading">
+                <span class="micro-label">NOW PLAYING</span>
+                <button type="button" class="round-btn small" data-close-player aria-label="关闭播放器">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                </button>
+              </div>
+              <div class="player-stage">
+                <div class="player-cover" id="playerCover"><span class="player-cover-glyph" id="playerCoverGlyph">♪</span><span class="player-cover-ring"></span></div>
+                <div class="player-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              </div>
+              <div class="player-info">
+                <h3 id="playerTitle">Tuyo</h3>
+                <p id="playerArtist">Rodrigo Amarante</p>
+              </div>
+              <div class="player-seek-wrap">
+                <input class="player-seek" id="playerSeek" type="range" min="0" max="1000" value="0" step="1" aria-label="播放进度">
+                <div class="player-times"><span id="playerCurrent">0:00</span><span id="playerDuration">0:00</span></div>
+              </div>
+              <div class="player-controls">
+                <button class="round-mini" id="playerPrev" type="button" aria-label="上一首"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14M19 6.8v10.4L9.5 12 19 6.8Z"/></svg></button>
+                <button class="player-play" id="playerPlay" type="button" aria-label="播放" data-playing="false">
+                  <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.4 5.7 18 12l-9.6 6.3V5.7Z"/></svg>
+                  <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5h3v13H8zM13 5.5h3v13h-3z"/></svg>
+                </button>
+                <button class="round-mini" id="playerNext" type="button" aria-label="下一首"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 5v14M5 6.8v10.4L14.5 12 5 6.8Z"/></svg></button>
+              </div>
+              <div class="playlist-head"><span>PLAYLIST · 私人收藏</span><small id="playlistMeta">5 首</small></div>
+              <ol class="playlist" id="playlist"></ol>
+            </section>
+          </div>
+
+          <!-- ================= LOGIN / MODALS ================= -->
+          <div class="modal-layer" id="loginModal" aria-hidden="true">
+            <div class="modal-card login-card" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+              <button class="modal-close" type="button" data-close-login aria-label="关闭">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+              </button>
+              <div class="login-icon" aria-hidden="true">
+                <svg viewBox="0 0 32 32"><rect x="6" y="13" width="20" height="15" rx="4"/><path d="M11 13V9.5a5 5 0 0 1 10 0V13"/><circle cx="16" cy="20" r="1.6"/></svg>
+              </div>
+              <p class="micro-label">RESTRICTED AREA</p>
+              <h3 id="loginTitle">管理员验证</h3>
+              <p class="login-desc">请输入后台密钥以进入管理后台。</p>
+              <form id="loginForm">
+                <input id="adminKeyInput" type="password" placeholder="输入密钥" autocomplete="current-password" required aria-label="后台密钥">
+                <p class="login-error" id="loginError" role="alert"></p>
+                <button class="primary-btn wide" type="submit">解锁后台</button>
+              </form>
+              <p class="login-foot">仅限网站管理员使用</p>
+            </div>
+          </div>
+
+          <div class="modal-layer" id="confirmModal" aria-hidden="true">
+            <div class="modal-card confirm-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+              <p class="micro-label">PLEASE CONFIRM</p>
+              <h3 id="confirmTitle">确认操作</h3>
+              <p id="confirmText">此操作不可撤销。</p>
+              <div class="confirm-actions">
+                <button class="secondary-btn" type="button" id="confirmCancel">取消</button>
+                <button class="danger-btn" type="button" id="confirmOk">确认</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="edit-dock" id="editDock" aria-hidden="true">
+            <span><i></i> 页面编辑中 · 点击虚线文字修改</span>
+            <button type="button" id="editDone">完成</button>
+          </div>
+
+          <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          <div class="home-indicator" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="phone-shadow" aria-hidden="true"></div>
+    </div>
+  </main>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
